@@ -14,6 +14,8 @@ const config: Config = {
       HeaderDark: '#2B3844',
       bodyLight: '#FAFAFA',
       bodyDark: '#202C36',
+      transparent: 'transparent',
+      textPlaceholder: '#C4C4C4',
     },
   },
   plugins: [],
