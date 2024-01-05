@@ -2,6 +2,29 @@
 import { useTheme } from 'next-themes';
 import { FC, useEffect, useState } from 'react';
 import React from 'react';
+import { motion } from 'framer-motion';
+
+const subMenuAnimate = {
+  enter: {
+    opacity: 1,
+    rotateX: 0,
+    transition: {
+      duration: 0.5,
+    },
+    display: 'block',
+  },
+  exit: {
+    opacity: 0,
+    rotateX: -15,
+    transition: {
+      duration: 0.5,
+      delay: 0.3,
+    },
+    transitionEnd: {
+      display: 'none',
+    },
+  },
+};
 
 interface IProps {
   value: string;
@@ -44,16 +67,19 @@ const SelectInput: FC<IProps> = ({ value, options }) => {
           )}
         </div>
         {isOpen && (
-          <div
+          <motion.div
             className="absolute top-[92px] flex w-[200px] flex-col gap-2 rounded-[5px] bg-white py-4 pl-6 pr-2
                           shadow-[0px_2px_9px_0px_rgba(0,0,0,0.05)] md:top-[60px] dark:bg-HeaderDark"
+            initial="exit"
+            animate={isOpen ? 'enter' : 'exit'}
+            variants={subMenuAnimate}
           >
             {options?.map((item, index) => (
               <div key={index} className="hover:text-hover text-xs hover:cursor-pointer md:text-sm">
                 {item}
               </div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </>
