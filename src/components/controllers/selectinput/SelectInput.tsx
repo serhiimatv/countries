@@ -9,7 +9,7 @@ const subMenuAnimate = {
     opacity: 1,
     rotateX: 0,
     transition: {
-      duration: 0.5,
+      duration: 0.2,
     },
     display: 'block',
   },
@@ -17,8 +17,8 @@ const subMenuAnimate = {
     opacity: 0,
     rotateX: -15,
     transition: {
-      duration: 0.5,
-      delay: 0.3,
+      duration: 0.2,
+      delay: 0.2,
     },
     transitionEnd: {
       display: 'none',
@@ -66,21 +66,19 @@ const SelectInput: FC<IProps> = ({ value, options }) => {
             </svg>
           )}
         </div>
-        {isOpen && (
-          <motion.div
-            className="absolute top-[92px] flex w-[200px] flex-col gap-2 rounded-[5px] bg-white py-4 pl-6 pr-2
-                          shadow-[0px_2px_9px_0px_rgba(0,0,0,0.05)] md:top-[60px] dark:bg-HeaderDark"
-            initial="exit"
-            animate={isOpen ? 'enter' : 'exit'}
-            variants={subMenuAnimate}
-          >
-            {options?.map((item, index) => (
-              <div key={index} className="hover:text-hover text-xs hover:cursor-pointer md:text-sm">
-                {item}
-              </div>
-            ))}
-          </motion.div>
-        )}
+        <motion.div
+          className="absolute top-[92px] z-50 flex w-[200px] flex-col gap-2 rounded-[5px] bg-white py-4 pl-6
+                          pr-2 shadow-[0px_2px_9px_0px_rgba(0,0,0,0.05)] md:top-[60px] dark:bg-HeaderDark"
+          initial="exit"
+          animate={isOpen ? 'enter' : 'exit'}
+          variants={subMenuAnimate}
+        >
+          {options?.map((item, index) => (
+            <div key={index} className="hover:text-hover text-xs hover:cursor-pointer md:text-sm">
+              {item}
+            </div>
+          ))}
+        </motion.div>
       </div>
     </>
   );
