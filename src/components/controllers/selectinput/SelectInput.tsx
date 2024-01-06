@@ -1,6 +1,6 @@
 'use client';
 import { useTheme } from 'next-themes';
-import { FC, useEffect, useState } from 'react';
+import { Dispatch, FC, SetStateAction, SyntheticEvent, useEffect, useState } from 'react';
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -29,12 +29,22 @@ const subMenuAnimate = {
 interface IProps {
   value: string;
   options?: string[];
+  filter: string;
+  setFilter: Dispatch<SetStateAction<string>>;
 }
 
-const SelectInput: FC<IProps> = ({ value, options }) => {
+const SelectInput: FC<IProps> = ({ value, options, filter, setFilter }) => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const clickHandler = (e: SyntheticEvent) => {
+    const el = e.target as HTMLDivElement;
+
+    setFilter(el.innerText);
+
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     setMounted(true);
@@ -48,7 +58,7 @@ const SelectInput: FC<IProps> = ({ value, options }) => {
                     px-6 shadow-[0px_2px_9px_0px_rgba(0,0,0,0.05)] md:mt-0 md:h-14 md:hover:cursor-pointer dark:bg-HeaderDark"
           onClick={() => setIsOpen(!isOpen)}
         >
-          <span className="text-xs md:text-sm">{value}</span>
+          <span className="text-xs md:text-sm">{filter === '' ? value : filter}</span>
           {mounted && (
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +84,11 @@ const SelectInput: FC<IProps> = ({ value, options }) => {
           variants={subMenuAnimate}
         >
           {options?.map((item, index) => (
-            <div key={index} className="hover:text-hover text-xs hover:cursor-pointer md:text-sm">
+            <div
+              key={index}
+              className="text-xs hover:cursor-pointer hover:text-hover md:text-sm"
+              onClick={clickHandler}
+            >
               {item}
             </div>
           ))}
