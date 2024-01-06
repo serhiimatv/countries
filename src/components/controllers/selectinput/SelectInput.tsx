@@ -17,8 +17,8 @@ const subMenuAnimate = {
     opacity: 0,
     rotateX: -15,
     transition: {
-      duration: 0.2,
-      delay: 0.2,
+      duration: 0.1,
+      delay: 0.1,
     },
     transitionEnd: {
       display: 'none',
@@ -83,6 +83,15 @@ const SelectInput: FC<IProps> = ({ value, options, filter, setFilter }) => {
           animate={isOpen ? 'enter' : 'exit'}
           variants={subMenuAnimate}
         >
+          <div
+            className="mb-2 text-xs hover:cursor-pointer hover:text-hover md:text-sm"
+            onClick={() => {
+              setFilter('');
+              setIsOpen(false);
+            }}
+          >
+            Clear filter
+          </div>
           {options?.map((item, index) => (
             <div
               key={index}

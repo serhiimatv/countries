@@ -1,7 +1,12 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction, SyntheticEvent } from 'react';
 import SearchIcon from '../components/SearchIcon';
+import { DebouncedFunc } from 'lodash';
 
-const SearchInput: FC = () => {
+interface IProps {
+  setSearch: DebouncedFunc<(e: SyntheticEvent) => void>;
+}
+
+const SearchInput: FC<IProps> = ({ setSearch }) => {
   return (
     <>
       <div
@@ -13,6 +18,7 @@ const SearchInput: FC = () => {
           className="h-full w-full bg-transparent text-xs outline-none placeholder:font-normal
                     placeholder:text-textPlaceholder md:text-sm dark:placeholder:text-white"
           placeholder="Search for a country…"
+          onChange={setSearch}
         />
       </div>
     </>
