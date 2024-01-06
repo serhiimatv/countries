@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, SyntheticEvent } from 'react';
+import { FC, SyntheticEvent } from 'react';
 import SearchIcon from '../components/SearchIcon';
 import { DebouncedFunc } from 'lodash';
 
