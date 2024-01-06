@@ -1,10 +1,15 @@
 'use client';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
 import { FC, useEffect, useState } from 'react';
 
 const BackButton: FC = () => {
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  const router = useRouter();
+
+  console.log(router);
 
   useEffect(() => {
     setMounted(true);
@@ -15,6 +20,7 @@ const BackButton: FC = () => {
       <button
         className="bg-trasition flex h-8 w-28 items-center justify-center rounded-[5px] bg-white text-sm
                         font-light shadow-[0px_0px_7px_0px_rgba(0,0,0,0.29)] dark:bg-HeaderDark "
+        onClick={() => router.back()}
       >
         <div className="flex w-[25%] items-center justify-center">
           {mounted && (
