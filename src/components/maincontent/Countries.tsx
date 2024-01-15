@@ -14,11 +14,11 @@ const Countries: FC<IProps> = ({ state }) => {
       <div className="px-9 py-8">
         <div className="grid gap-10 md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_1fr_1fr] xl:grid-cols-[1fr_1fr_1fr_1fr]">
           {state?.map((state, index) => (
-            <Link href={`/${state.cca3}`}>
-              <article
-                key={index}
-                className="bg-trasition rounded-[5px] bg-white shadow-[0px_0px_7px_2px_rgba(0,0,0,0.03)] dark:bg-HeaderDark"
-              >
+            <Link
+              href={`/${state.cca3}`}
+              className="bg-trasition rounded-[5px] bg-white shadow-[0px_0px_7px_2px_rgba(0,0,0,0.03)] dark:bg-HeaderDark"
+            >
+              <article key={index}>
                 <div className="relative aspect-[1.6/1] w-full rounded-t-[5px]">
                   <Image
                     src={state.flags.svg}

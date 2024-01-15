@@ -1,5 +1,3 @@
-import Controllers from '@/components/controllers/Controllers';
-import Countries from '@/components/maincontent/Countries';
 import MainContent from '@/components/maincontent/MainContent';
 
 async function getData(url: string) {
